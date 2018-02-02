@@ -17,6 +17,28 @@ router.get('/', (req, res, next) => {
   });
 });
 
+/* render the detail page */
+router.get('/:id', (req, res, next) => {
+  const id = req.params.id;
+  Celebrity.findById(id, (err, celebrity) => {
+    if (err) {
+      return next(err);
+    }
+    if (!celebrity) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
+    }
+    const data = {
+      title: celebrity.name,
+      celebrity: celebrity
+    };
+    res.render('celebrities/detail', data);
+  });
+});
+
 /* render the create form */
 router.get('/new', (req, res, next) => {
   res.render('celebrities/new', {
