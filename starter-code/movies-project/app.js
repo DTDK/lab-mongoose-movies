@@ -47,14 +47,20 @@ app.use('/celebrities', celebrities);
 
 app.use(function (req, res, next) {
   res.status(404);
-  res.render('not-found');
+  const data = {
+    title: '404 Not Found'
+  };
+  res.render('not-found', data);
 });
 
 app.use(function (err, req, res, next) {
   console.error('ERROR', req.method, req.path, err);
   if (!res.headersSent) {
+    const data = {
+      title: '500 Ouch'
+    };
     res.status(500);
-    res.render('error');
+    res.render('error', data);
   }
 });
 
