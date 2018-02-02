@@ -51,6 +51,10 @@ h3 {}
   border: 1px solid black;
 }
 
+.error {
+  color: red;
+}
+
 /* ---- layout ---- */
 
 .container {

@@ -11,10 +11,12 @@
         <a class="name" href="/celebrities/<%= theCelebrity._id %>"><%= theCelebrity.name %></a>
         <span class="occupation"><%= theCelebrity.occupation %></span>
       </p>
+      <% if (user) { %>
       <form class="actions" action="/celebrities/<%= theCelebrity._id %>/delete" method="POST">
         <a class="action edit" href="/celebrities/<%= theCelebrity._id %>/edit">Edit</a>
         <button class="btn delete">Delete</button>
       </form>
+      <% } %>
     </li>
   <% }); %>
 </ul>

@@ -9,7 +9,6 @@ router.get('/', (req, res, next) => {
     if (err) {
       return next(err);
     }
-
     res.render('celebrities/index', {
       title: 'Celebrity Inventory',
       celebrities
@@ -19,6 +18,9 @@ router.get('/', (req, res, next) => {
 
 /* render the create form */
 router.get('/new', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
   res.render('celebrities/new', {
     title: "Build Your Celebrity's Profile"
   });
@@ -26,6 +28,9 @@ router.get('/new', (req, res, next) => {
 
 /* handle the POST from the create form */
 router.post('/', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
   const theCelebrity = new Celebrity({
     name: req.body.name,
     occupation: req.body.occupation,
@@ -64,6 +69,9 @@ router.get('/:id', (req, res, next) => {
 
 /* render the edit form */
 router.get('/:id/edit', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
   const id = req.params.id;
   Celebrity.findById(id, (err, celebrity) => {
     if (err) {
@@ -86,6 +94,9 @@ router.get('/:id/edit', (req, res, next) => {
 
 /* handle the POST from the edit form */
 router.post('/:id', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
   const id = req.params.id;
   const updates = {
     $set: {
@@ -111,6 +122,9 @@ router.post('/:id', (req, res, next) => {
 
 /* handle the POST to delete one */
 router.post('/:id/delete', (req, res, next) => {
+  if (!req.session.currentUser) {
+    return res.redirect('/auth/login');
+  }
   const id = req.params.id;
   Celebrity.remove({_id: id}, (err) => {
     if (err) {
