@@ -1,10 +1,24 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
-    <title>Famous people</title>
+    <title><%= title %>| Famous people</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- body %> 
+    <header id="site-header">
+      <div class="container">
+        <h1>Super Famous</h1>
+      </div>
+    </header>
+    <div id="site-main" class="container">
+      <%- body %>
+    </div>
+    <footer id="site-footer">
+      <div class="container">
+        <p>&copy; 2018 Ironhack</p>
+      </div>
+    </footer>
   </body>
 </html>

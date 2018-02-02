@@ -1,8 +1,104 @@
+
+/* ---- reset ---- */
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html,
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  margin: 0;
+}
+
+
+/* ---- typography ---- */
+
+body {
+  font-size: 14px;
+  font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: #00B7FF;
+}
+
+
+h1 {}
+
+h2 {}
+
+h3 {}
+
+/* ---- forms ---- */
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+  font-size: 16px;
+  padding-bottom: 10px;
+}
+
+.field input {
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 16px;
+  border: 1px solid black;
+}
+
+/* ---- layout ---- */
+
+.container {
+  margin: 0 20px;
+}
+
+#site-header {}
+
+#site-footer {}
+
+#site-main {}
+
+
+
+
+/* ---- components ---- */
+
+/* button */
+
+.btn {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  text-decoration: none;
+  color: black;
+  border: none;
+}
+
+.btn.submit {
+  background: rgb(30, 247, 30);
+}
+
+.btn.delete {
+  background-color: red;
+}
+
+/* list */
+
+.list {
+  padding: 0;
+  list-style: none;
+}
+
+.list .actions {
+  display: inline-block;
+}
+
+.list .actions .btn {
+  padding: 2px 10px;
+  font-size: 14px;
 }
