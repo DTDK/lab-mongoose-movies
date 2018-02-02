@@ -3,7 +3,7 @@ const router = express.Router();
 
 const Celebrity = require('../models/celebrity');
 
-/* render celelbrity list page. */
+/* render the list page */
 router.get('/', (req, res, next) => {
   Celebrity.find({}, (err, celebritiesArray) => {
     if (err) {
@@ -17,12 +17,14 @@ router.get('/', (req, res, next) => {
   });
 });
 
+/* render the create form */
 router.get('/new', (req, res, next) => {
   res.render('celebrities/new', {
     title: "Build Your Celebrity's Profile"
   });
 });
 
+/* handle the POST from the create form */
 router.post('/', (req, res, next) => {
   const theCelebrity = new Celebrity({
     name: req.body.name,
@@ -31,6 +33,17 @@ router.post('/', (req, res, next) => {
   });
 
   theCelebrity.save((err) => {
+    if (err) {
+      return next(err);
+    }
+    res.redirect('/celebrities');
+  });
+});
+
+/* handle the POST to delete one */
+router.post('/:id/delete', (req, res, next) => {
+  const id = req.params.id;
+  Celebrity.remove({_id: id}, (err) => {
     if (err) {
       return next(err);
     }
