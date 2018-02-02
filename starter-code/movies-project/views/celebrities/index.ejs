@@ -4,13 +4,15 @@
   <a href="/celebrities/new">Create new</a>
 </p>
 
-<ul class="list">
+<ul class="list celebrity-list">
   <% celebrities.forEach( (theCelebrity) => { %>
     <li>
-      <a class="name" href="/celebrities/<%= theCelebrity._id %>"><%= theCelebrity.name %></a>
-      <span class="occupation"><%= theCelebrity.occupation %></span>
-      <a class="action edit" href="/celebrities/<%= theCelebrity._id %>/edit">Edit</a>
+      <p class="item">
+        <a class="name" href="/celebrities/<%= theCelebrity._id %>"><%= theCelebrity.name %></a>
+        <span class="occupation"><%= theCelebrity.occupation %></span>
+      </p>
       <form class="actions" action="/celebrities/<%= theCelebrity._id %>/delete" method="POST">
+        <a class="action edit" href="/celebrities/<%= theCelebrity._id %>/edit">Edit</a>
         <button class="btn delete">Delete</button>
       </form>
     </li>

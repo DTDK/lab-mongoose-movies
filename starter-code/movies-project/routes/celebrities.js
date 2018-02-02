@@ -5,14 +5,14 @@ const Celebrity = require('../models/celebrity');
 
 /* render the list page */
 router.get('/', (req, res, next) => {
-  Celebrity.find({}, (err, celebritiesArray) => {
+  Celebrity.find({}, (err, celebrities) => {
     if (err) {
       return next(err);
     }
 
     res.render('celebrities/index', {
       title: 'Celebrity Inventory',
-      celebrities: celebritiesArray
+      celebrities
     });
   });
 });
@@ -33,7 +33,7 @@ router.get('/:id', (req, res, next) => {
     }
     const data = {
       title: celebrity.name,
-      celebrity: celebrity
+      celebrity
     };
     res.render('celebrities/detail', data);
   });
@@ -57,6 +57,53 @@ router.post('/', (req, res, next) => {
   theCelebrity.save((err) => {
     if (err) {
       return next(err);
+    }
+    res.redirect('/celebrities');
+  });
+});
+
+/* render the edit form */
+router.get('/:id/edit', (req, res, next) => {
+  const id = req.params.id;
+  Celebrity.findById(id, (err, celebrity) => {
+    if (err) {
+      return next(err);
+    }
+    if (!celebrity) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
+    }
+    const data = {
+      title: 'Edit ' + celebrity.name,
+      celebrity
+    };
+    res.render('celebrities/edit', data);
+  });
+});
+
+/* handle the POST from the edit form */
+router.post('/:id', (req, res, next) => {
+  const id = req.params.id;
+  const updates = {
+    $set: {
+      name: req.body.name,
+      occupation: req.body.occupation,
+      catchPhrase: req.body.catchPhrase
+    }
+  };
+  Celebrity.update({_id: id}, updates, (err, result) => {
+    if (err) {
+      return next(err);
+    }
+    if (!result.n) {
+      res.status(404);
+      const data = {
+        title: '404 Not Found'
+      };
+      return res.render('not-found', data);
     }
     res.redirect('/celebrities');
   });

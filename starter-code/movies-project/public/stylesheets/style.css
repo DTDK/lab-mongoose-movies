@@ -87,15 +87,33 @@ h3 {}
   background-color: red;
 }
 
+/* actions */
+
+.actions {
+  margin-bottom: 20px;
+  padding: 10px;
+  text-align: right;
+  background: #ccc;
+}
+
 /* list */
 
 .list {
   padding: 0;
   list-style: none;
+  border-top: 1px solid #ccc;
+}
+
+.list li {
+  overflow: hidden;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid #ccc;
 }
 
 .list .actions {
-  display: inline-block;
+  margin: 0;
+  padding: 5px;
 }
 
 .list .actions .btn {
@@ -116,4 +134,20 @@ h3 {}
   padding: 5px 10px;
   font-size: 20px;
   background: yellow;
+}
+
+
+/* -- pages -- */
+
+.celebrity-list li {
+  display: flex;
+  align-items: center;
+}
+
+.celebrity-list .item {
+  flex: 1 0 80%;
+}
+
+.celebrity-list .actions {
+  flex: 1 0 20%;
 }

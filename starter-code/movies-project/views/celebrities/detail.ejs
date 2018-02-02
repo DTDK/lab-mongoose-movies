@@ -1,5 +1,10 @@
 <h2><%= celebrity.name %></h2>
 
+<form class="actions" action="/celebrities/<%= celebrity._id %>/delete" method="POST">
+  <a class="action edit" href="/celebrities/<%= celebrity._id %>/edit">Edit</a>
+  <button class="btn delete">Delete</button>
+</form>
+
 <p class="detail">
   <span class="label">Occupation:</span>
   <span class="value"><%= celebrity.occupation %></span>
